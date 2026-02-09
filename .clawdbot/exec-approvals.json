@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "socket": {
+    "path": "/root/.clawdbot/exec-approvals.sock",
+    "token": "RsbPo-nz7atMHFSqAQSuhLySWQhYTa2M"
+  },
+  "defaults": {},
+  "agents": {}
+}

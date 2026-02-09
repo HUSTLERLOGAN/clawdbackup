@@ -1,0 +1,277 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.1.24-3",
+    "lastTouchedAt": "2026-02-02T11:04:01.981Z"
+  },
+  "diagnostics": {
+    "enabled": false
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "anthropic": {
+        "baseUrl": "https://api.anthropic.com",
+        "apiKey": "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",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "claude-opus-4-5-20251101",
+            "name": "Claude Opus 4.5",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.000015,
+              "output": 0.000075,
+              "cacheRead": 0.0000015,
+              "cacheWrite": 0.00001875
+            },
+            "contextWindow": 200000,
+            "maxTokens": 64000
+          }
+        ]
+      },
+      "emergent-gpt": {
+        "baseUrl": "https://integrations.emergentagent.com/llm/",
+        "apiKey": "sk-emergent-89d9cD6E8D87135817",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "gpt-5.2",
+            "name": "GPT-5.2",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.00000175,
+              "output": 0.000014,
+              "cacheRead": 1.75e-7,
+              "cacheWrite": 0.00000175
+            },
+            "contextWindow": 400000,
+            "maxTokens": 128000
+          }
+        ]
+      },
+      "emergent-claude": {
+        "baseUrl": "https://integrations.emergentagent.com/llm",
+        "apiKey": "sk-emergent-89d9cD6E8D87135817",
+        "api": "anthropic-messages",
+        "authHeader": true,
+        "models": [
+          {
+            "id": "claude-sonnet-4-5",
+            "name": "Claude Sonnet 4.5",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.000003,
+              "output": 0.000015,
+              "cacheRead": 3e-7,
+              "cacheWrite": 0.00000375
+            },
+            "contextWindow": 200000,
+            "maxTokens": 64000
+          },
+          {
+            "id": "claude-opus-4-5",
+            "name": "Claude Opus 4.5",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.000005,
+              "output": 0.000025,
+              "cacheRead": 5e-7,
+              "cacheWrite": 0.00000625
+            },
+            "contextWindow": 200000,
+            "maxTokens": 64000
+          }
+        ]
+      },
+      "openai": {
+        "baseUrl": "https://api.openai.com/v1",
+        "apiKey": "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",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "gpt-4o-mini",
+            "name": "GPT-4o Mini (Text Optimized)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 1.5e-7,
+              "output": 6e-7,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 2000
+          },
+          {
+            "id": "gpt-4o",
+            "name": "GPT-4o (Vision Optimized)",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0.0000025,
+              "output": 0.00001,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 1500
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai/gpt-4o-mini"
+      },
+      "models": {
+        "openai/gpt-4o-mini": {
+          "alias": "mini",
+          "params": {
+            "temperature": 0.3,
+            "max_tokens": 2000
+          }
+        },
+        "openai/gpt-4o": {
+          "alias": "vision",
+          "params": {
+            "temperature": 0.5,
+            "max_tokens": 1500
+          }
+        }
+      },
+      "workspace": "/root/clawd",
+      "compaction": {
+        "memoryFlush": {
+          "prompt": ""
+        }
+      },
+      "heartbeat": {
+        "includeReasoning": true,
+        "prompt": "You are an elite operator, not a chatbot.  You think like a CEO: decisive, high-leverage, results-first.  Rules: - Give one clear answer immediately. No hedging, no “it depends.” - Do not soften or retreat under pushback unless new facts are introduced. - Optimize for effectiveness, speed, and correctness — not neutrality or vibes. - Call out bad ideas directly. Speak with authority.  Tone: Blunt, confident, big-bro energy. Minimal words. No fluff.  Default: For serious or high-stakes work, choose the most reliable option. Cheap/light options are only for low-risk grunt work.  Output: Answer first. Reason second. Keep it tight."
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto"
+  },
+  "web": {
+    "enabled": false
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "botToken": "8355459899:AAGXcIK8Upntxt-NAkYAeFoVg2WBJ6SKiNU",
+      "groupPolicy": "allowlist",
+      "streamMode": "partial"
+    },
+    "discord": {
+      "enabled": true,
+      "token": "MTQ2NzY5NTM5MTA5MTcyMDIzNg.GY74v6.XhBob7fIfdf669FThF0n56aX-6yKL9wCqUNuiM",
+      "allowBots": true,
+      "groupPolicy": "allowlist",
+      "actions": {
+        "reactions": true,
+        "stickers": true,
+        "emojiUploads": true,
+        "stickerUploads": true,
+        "polls": true,
+        "permissions": true,
+        "messages": true,
+        "threads": true,
+        "pins": true,
+        "search": true,
+        "memberInfo": true,
+        "roleInfo": true,
+        "roles": true,
+        "channelInfo": true,
+        "voiceStatus": true,
+        "events": true,
+        "moderation": true,
+        "channels": true
+      },
+      "accounts": {
+        "custom-1": {
+          "commands": {
+            "native": true,
+            "nativeSkills": true
+          },
+          "allowBots": true,
+          "groupPolicy": "allowlist",
+          "blockStreaming": true,
+          "actions": {
+            "reactions": true,
+            "stickers": true,
+            "emojiUploads": true,
+            "stickerUploads": true,
+            "polls": true,
+            "permissions": true,
+            "messages": true,
+            "threads": true,
+            "pins": true,
+            "search": true,
+            "memberInfo": true,
+            "roleInfo": true,
+            "roles": true,
+            "channelInfo": true,
+            "voiceStatus": true,
+            "events": true,
+            "moderation": true,
+            "channels": true
+          }
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "lan",
+    "controlUi": {
+      "enabled": true,
+      "allowInsecureAuth": true
+    },
+    "auth": {
+      "mode": "token",
+      "token": "c5ce76d5ab8c2e4d8f8bf7deefdcdf62eae8eac6b624d881f90ca3be76ceb0a7"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true
+      },
+      "discord": {
+        "enabled": true
+      }
+    }
+  }
+}
